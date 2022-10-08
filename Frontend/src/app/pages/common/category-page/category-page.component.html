@@ -1,0 +1,33 @@
+<app-navbar2 *ngIf="type == 'user'"></app-navbar2>
+<app-navbar3 *ngIf="type == 'admin'"></app-navbar3>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-3 p-3">
+            <app-category-list></app-category-list>
+        </div>
+        <div class="col-lg-9 p-3 pl-5">
+            <h1 class="text-center mb-5">All Books</h1>
+            <div class="row">
+                <div class="col-lg-4 mb-3" *ngFor="let book of books">
+                    <div class="card h-100">
+                        <a routerLink="{{ '/book/' + book.BookId }}">
+                            <img src="{{ book.Image }}" alt="" class="card-img-top"></a>
+                        <div class="card-header">
+                            <h5 class="card-title">{{ book.Title }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text text-center">
+                                <span class="price align-middle"> {{ book.Price | currency : 'INR'}} </span>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a routerLink="{{ '/book/' + book.BookId }}"
+                                class="btn btn-warning btn-block">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

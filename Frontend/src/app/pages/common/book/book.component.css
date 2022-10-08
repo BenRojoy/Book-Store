@@ -1,0 +1,13 @@
+.container{
+    background-color: #e7c27d;
+    padding: 20px;
+}
+
+.price{
+    font-size: 20px;
+}
+
+.btn{
+    width: 46%;
+    margin: 2%;
+}

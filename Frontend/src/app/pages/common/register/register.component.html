@@ -1,0 +1,63 @@
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <div class="wrapper">
+                <div class="{{ 'alert ' + registerClass }}" role="alert">
+                    {{ registerResponse }}
+                </div>
+                <h2 class="text-center">Register</h2>
+                <hr>
+                <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input #name="ngModel" type="text" name="name" id="name" class="form-control"
+                            [(ngModel)]='userModel.Name' required
+                            [class.is-invalid]="name.invalid && name.touched">
+                        <div><small class="text-danger" [class.d-none]="name.untouched || name.valid">Name is required</small></div>
+                        <label for="email">Email</label>
+                        <input #email="ngModel" type="text" name="email" id="email" class="form-control"
+                            [(ngModel)]='userModel.Email' required 
+                            [class.is-invalid]="email.invalid && email.touched"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                            <div *ngIf="email.errors && email.touched">
+                                <small class="text-danger" *ngIf="email.errors['required']">Email is required</small>
+                                <small class="text-danger" *ngIf="email.errors['pattern']">Email is not valid</small>
+                            </div>                            
+                        <label for="mobile">Mobile number</label>
+                        <input #mobile="ngModel" type="text" name="mobile" id="mobile" class="form-control"
+                            [(ngModel)]='userModel.Mobile' required
+                            [class.is-invalid]="mobile.invalid && mobile.touched"
+                            pattern = "^((\\+91-?) |0)?[0-9]{10}$">
+                            <div *ngIf="mobile.errors && mobile.touched">
+                                <small class="text-danger" *ngIf="mobile.errors['required']">Mobile number is required</small>
+                                <small class="text-danger" *ngIf="mobile.errors['pattern']">Mobile number should be 10 digits</small>
+                            </div>                            
+                            <label for="username">Username</label>
+                            <input #username="ngModel" type="text" name="username" id="username" class="form-control"
+                                [(ngModel)]='userModel.Username' required
+                                [class.is-invalid]="username.invalid && username.touched">
+                            <div><small class="text-danger" [class.d-none]="username.untouched || username.valid">Username is required</small></div>
+                            <label for="password">Password</label>
+                            <input #password="ngModel" type="password" name="password" id="password" class="form-control"
+                            [(ngModel)]='userModel.Password' required
+                            [class.is-invalid]="password.invalid && password.touched"
+                            minlength="8">
+                            <div *ngIf="password.errors && password.touched">
+                                <small class="text-danger" *ngIf="password.errors['required']">Password is required</small>
+                                <small class="text-danger" *ngIf="password.errors['minlength']">Password should be atleast 8 characters</small>
+                            </div>                            
+                        <br>
+                        <button type="submit" class="btn btn-warning btn-block"
+                            [disabled]="registerForm.invalid">Register</button>
+                        <br>
+                        <p class="text-center">
+                            <a class="text-dark" routerLink="/login">Already registered? Click here to login</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<app-navbar2 *ngIf="type == 'user'"></app-navbar2>
+<app-navbar3 *ngIf="type == 'admin'"></app-navbar3>
+
+<h1 class="text-center my-4">Book details</h1>
+<div class="container rounded">
+    <div class="row">
+        <div class="col-lg-6">
+            <img src="{{ book.Image }}" alt=""
+                class="img-fluid w-100 rounded">
+        </div>
+        <div class="col-lg-6">
+            <h2>{{ book.Title }}</h2>
+            <hr>
+            <p>Description: {{ book.Description }}</p>
+            <p>Author: {{ book.Author }}</p>
+            <p>ISBN: {{ book.ISBN }}</p>
+            <p>Year: {{ book.Year }}</p>
+            <p>
+                <span class="price align-middle">
+                    {{ book.Price | currency : 'INR'}}
+                </span>
+            </p>
+            <a href="" class="btn btn-warning">Add to cart</a>
+            <a href="" class="btn btn-warning">Buy now</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+footer{
+    background-color: #dac17c;
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+}
+
+.card{
+    background: none;
+}

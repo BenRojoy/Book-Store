@@ -1,0 +1,8 @@
+<h1 class="text-center mb-5">Categories</h1>
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let cat of categories">
+        <button routerLink="{{ '/categories/' + cat.CategoryId }}">
+            {{ cat.CategoryName }}
+        </button>
+    </li>
+</ul>

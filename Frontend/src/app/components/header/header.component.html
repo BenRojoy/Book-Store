@@ -1,0 +1,18 @@
+<div class="container my-4 p-2 text-center">
+    <div class="row m-2 ">
+        <div class="col-lg-5 p-0">
+            <img src="assets/header.png" alt="Bookstore poster" width="100%">
+        </div>
+        <div class="col lg-7">
+            <h1 class="text-center m-4">Book Spot</h1>
+            <h2 class="text-center m-4">The perfect spot for all your favourite books!</h2>
+            <p class="text-justify m-2">
+                Be it action, classics, comic, horror or science; you name it, we got it! Delivered right to your doorstep. 
+                Choose from a wide selection of bestsellers and top authors.
+            </p>
+            <br> 
+            <a class="btn btn-warning" *ngIf="type" href="home/#cat">Explore</a>
+            <button class="btn btn-warning" *ngIf="!type" routerLink="/login">Explore</button>
+        </div>
+    </div>
+</div>

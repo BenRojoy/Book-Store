@@ -1,0 +1,90 @@
+Category:
+{
+    "CATEGORYID": 1,
+    "CATEGORYNAME": "SCIENCE FICTION",
+    "DESCRIPTION": "BOOKS THAT ARE BASED ON SCIENTIFIC STORIES THAT ARE NOT REAL",
+    "IMAGE": "ABC.COM/IMAGE",
+    "STATUS": 0,
+    "POSITION": 1
+}
+
+Book:
+{
+    "BOOKID": 11,
+    "CATEGORYID": 4,
+    "TITLE": "XYZ",
+    "AUTHOR": "ABC",
+    "ISBN": "567-456-789",
+    "YEAR": 2022,
+    "PRICE": 123.34,
+    "DESCRIPTION": "GOOD BOOK",
+    "POSITION": 2,
+    "STATUS": 1,
+    "IMAGE": "PQRS.NET"
+}
+
+User:
+{
+    "UserId": 101,
+    "Name": "Frenemy",
+    "Username": "GreatFren",
+    "Password": "Iamgreat",
+    "Email": "frenemy@gmail.com",
+    "Mobile": 9876512340,
+    "AccountStatus": 1
+}
+
+Admin:
+{
+    "AdminId": 101,
+    "Name": "Fren",
+    "Username": "GreatFren",
+    "Password": "Iamgreat",
+    "Email": "frenemy@gmail.com",
+    "Mobile": 9876512340
+}
+
+Address:
+{
+    "AddressId": 100,
+    "UserId": 100,
+    "HouseNo": "347",
+    "Street": "Danbury Lane",
+    "City": "Austin",
+    "State": "Texas",
+    "Pincode": 687905
+}
+
+Wishlist:
+{
+    "WishlistId": 1001,
+    "UserId": 100,
+    "BookId": 10,
+    "Quantity": 3
+}
+
+Cart:
+{
+    "CartId": 1001,
+    "UserId": 100,
+    "BookId": 10,
+    "Quantity": 3
+}
+
+Orders:
+{
+    "OrderId": 10000,
+    "UserId": 102,
+    "BookId": 10,
+    "Quantity": 1,
+    "AddressId": 100,
+    "Date": "2000-01-01 00:00:00"
+}
+
+Cart:
+{
+    "CouponId": 10000,
+    "Title": "20 percent off",
+    "MinCartValue": 500,
+    "Discount": 100
+}

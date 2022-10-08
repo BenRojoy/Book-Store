@@ -1,0 +1,39 @@
+<app-navbar1></app-navbar1>
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <div class="wrapper">
+                <div class="{{ 'alert ' + loginClass }}" role="alert">
+                    {{ loginResponse }}
+                </div>
+                <h2 class="text-center">Login</h2>
+                <hr>
+                <form [formGroup]="loginForm" (submit)="onSubmit()">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" formControlName="username"
+                            [class.is-invalid]="username?.invalid && username?.touched">
+                        <div *ngIf="username?.errors && username?.touched">
+                            <small class="text-danger" *ngIf="username?.errors?.['required']">Username is required</small>
+                        </div>
+                        <label>Password</label>
+                        <input type="password" class="form-control" formControlName="password"
+                            [class.is-invalid]="password?.invalid && password?.touched">
+                        <div *ngIf="password?.errors && password?.touched">
+                            <small class="text-danger" *ngIf="password?.errors?.['required']">Password is
+                                required</small>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-warning btn-block">Login</button>
+                        <br>
+                        <p class="text-center">
+                            <a class="text-dark" routerLink="/register">New user? Click here to register</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>

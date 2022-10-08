@@ -1,0 +1,8 @@
+#container{
+    min-height: 100%;
+    position: relative;
+}
+
+#pad{
+    padding-bottom: 50px;
+}
