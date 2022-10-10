@@ -21,10 +21,11 @@
                     <td>{{ user.Name }}</td>
                     <td>{{ user.Email }}</td>
                     <td>{{ user.Mobile }}</td>
-                    <td>{{ user.AccountStatus }}</td>
+                    <td *ngIf="user.AccountStatus">Active</td>
+                    <td *ngIf="!user.AccountStatus">Inactive</td>
                     <td>
-                        <button class="btn btn-primary mr-2">Activate</button>
-                        <button class="btn btn-danger">Deactivate</button>
+                        <button *ngIf="!user.AccountStatus" (click)="activateUser(user.UserId)" class="btn btn-primary mr-2">Activate</button>
+                        <button *ngIf="user.AccountStatus" (click)="deActivateUser(user.UserId)" class="btn btn-danger">Deactivate</button>
                     </td>
                 </tbody>
             </table>

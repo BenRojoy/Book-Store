@@ -20,9 +20,9 @@ namespace Backend.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult GetAll()
+        public IHttpActionResult GetByUser(int id)
         {
-            var data = repository.GetCart();
+            var data = repository.GetCartUser(id);
             return Ok(data);
         }
 

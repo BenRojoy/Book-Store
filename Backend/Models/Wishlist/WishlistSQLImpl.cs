@@ -29,20 +29,22 @@ namespace Backend.Models
             conn.Close();
         }
 
-        public List<Wishlist> GetWishlist()
+        public List<Wishlist> GetByUser(int userId)
         {
             List<Wishlist> list = new List<Wishlist>();
-            comm.CommandText = "select * from wishlist";
+            comm.CommandText = "select WishlistId, b.BookId, Title, Image, Price, Quantity from wishlist w join book b on w.bookid = b.bookid where userid = " + userId;
             comm.Connection = conn;
             conn.Open();
             SqlDataReader reader = comm.ExecuteReader();
             while (reader.Read())
             {
-                int id = Convert.ToInt32(reader["WishlistId"]);
-                int userId= Convert.ToInt32(reader["UserId"]);
+                int wishlistId = Convert.ToInt32(reader["WishlistId"]);
                 int bookId = Convert.ToInt32(reader["BookId"]);
+                string title = reader["Title"].ToString();
+                string image = reader["Image"].ToString();
+                double price = Convert.ToDouble(reader["Price"]);
                 int quantity = Convert.ToInt32(reader["Quantity"]);
-                list.Add(new Wishlist(id, userId, bookId, quantity));
+                list.Add(new Wishlist(wishlistId, bookId, title, image, price, quantity));
             }
             conn.Close();
             return list;

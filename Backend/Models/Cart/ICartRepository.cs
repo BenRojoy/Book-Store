@@ -8,7 +8,7 @@ namespace Backend.Models
 {
     internal interface ICartRepository
     {
-        List<Cart> GetCart();
+        List<Cart> GetCartUser(int id);
         void AddCart(Cart cart);
         void DeleteCart(int cartId);
         void UpdateCart(Cart cart);

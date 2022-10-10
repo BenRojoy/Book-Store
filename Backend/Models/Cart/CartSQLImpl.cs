@@ -29,20 +29,22 @@ namespace Backend.Models
             conn.Close();
         }
 
-        public List<Cart> GetCart()
+        public List<Cart> GetCartUser(int userId)
         {
             List<Cart> list = new List<Cart>();
-            comm.CommandText = "select * from cart";
+            comm.CommandText = "select CartId, b.BookId, Title, Image, Price, Quantity from cart c join book b on c.bookid = b.bookid where userid = " + userId;
             comm.Connection = conn;
             conn.Open();
             SqlDataReader reader = comm.ExecuteReader();
             while (reader.Read())
             {
-                int id = Convert.ToInt32(reader["CartId"]);
-                int userId = Convert.ToInt32(reader["UserId"]);
+                int cartId = Convert.ToInt32(reader["CartId"]);
                 int bookId = Convert.ToInt32(reader["BookId"]);
+                string title = reader["Title"].ToString();
+                string image = reader["Image"].ToString();
+                double price = Convert.ToDouble(reader["Price"]);
                 int quantity = Convert.ToInt32(reader["Quantity"]);
-                list.Add(new Cart(id, userId, bookId, quantity));
+                list.Add(new Cart(cartId, bookId, title, image, price, quantity));
             }
             conn.Close();
             return list;

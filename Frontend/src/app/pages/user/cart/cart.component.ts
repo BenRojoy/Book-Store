@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-cart',
@@ -7,7 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  userId = localStorage.getItem('userid');
+  books: any[] = [];
+  status: any;
+
+  constructor(private dataService: DataService) {     
+    this.dataService.getCart(this.userId).subscribe((response: any) => {
+    this.books = response;
+    })
+}
+removeBook(id: any)
+{
+  this.dataService.deleteBookCart(id).subscribe(() =>
+    this.status = 'Delete successful'
+  );
+  window.location.reload();
+}
 
   ngOnInit(): void {
   }

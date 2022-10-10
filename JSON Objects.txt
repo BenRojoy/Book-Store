@@ -66,7 +66,7 @@ Wishlist:
 Cart:
 {
     "CartId": 1001,
-    "UserId": 100,
+    "UserId": 102,
     "BookId": 10,
     "Quantity": 3
 }

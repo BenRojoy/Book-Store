@@ -20,8 +20,8 @@
                     {{ book.Price | currency : 'INR'}}
                 </span>
             </p>
-            <a href="" class="btn btn-warning">Add to cart</a>
-            <a href="" class="btn btn-warning">Buy now</a>
+            <button (click)="addWishlist(book.BookId)" class="btn btn-warning">Add to wishlist</button>
+            <button (click)="addCart(book.BookId)" class="btn btn-warning">Add to cart</button>
         </div>
     </div>
 </div>

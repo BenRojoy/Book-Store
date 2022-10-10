@@ -14,16 +14,17 @@ namespace Backend.Models
 
         public string[] UserLogin(Login login)
         {
-            comm.CommandText = "select name, type from users where username = '" + login.Username + "' and password = '" + login.Password + "'";
+            comm.CommandText = "select userid, name, type from users where username = '" + login.Username + "' and password = '" + login.Password + "'";
             comm.Connection = conn;
             conn.Open();
             SqlDataReader reader = comm.ExecuteReader();
             reader.Read();
             if (reader.HasRows)
             {
-                string[] obj = new string[2];
-                obj[0] = reader["name"].ToString();
-                obj[1] = reader["type"].ToString();
+                string[] obj = new string[3];
+                obj[0] = reader["userid"].ToString();
+                obj[1] = reader["name"].ToString();
+                obj[2] = reader["type"].ToString();
                 conn.Close();
                 return obj;
             }

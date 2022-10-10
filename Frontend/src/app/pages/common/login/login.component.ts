@@ -34,8 +34,9 @@ export class LoginComponent implements OnInit {
       console.log(response);
       this.loginResponse = 'Logged in successfully!';
       this.loginClass = 'alert-success';
-      localStorage.setItem('name', response[0]);
-      localStorage.setItem('type', response[1]);
+      localStorage.setItem('userid', response[0]);
+      localStorage.setItem('name', response[1]);
+      localStorage.setItem('type', response[2]);
       this.router.navigateByUrl('home');
   },
   (error: any) => {

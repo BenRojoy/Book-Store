@@ -8,7 +8,7 @@ namespace Backend.Models
 {
     internal interface IWishlistRepository
     {
-        List<Wishlist> GetWishlist();
+        List<Wishlist> GetByUser(int id);
         void AddWishlist(Wishlist wishlist);
         void DeleteWishlist(int wishlistId);
         void UpdateWishlist(Wishlist wishlist);

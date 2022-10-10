@@ -9,7 +9,7 @@ import { DataService } from '../../../services/data.service'
 export class UsersComponent implements OnInit {
 
   users: any;
-  
+  response: any;
 
   constructor(private dataService: DataService) {
     this.dataService.getUsers().subscribe((data: any) => {
@@ -17,10 +17,17 @@ export class UsersComponent implements OnInit {
     })
    }
 
-  activateUser(id: any, status: any){
-    this.dataService.adminUpdateUser(id, status).subscribe((data: any) => {
-
+  activateUser(id: any){
+    this.dataService.adminUpdateUser(id, 1).subscribe((data: any) => {
+      this.response = data;
     })
+    window.location.reload();
+  }
+  deActivateUser(id: any){
+    this.dataService.adminUpdateUser(id, 0).subscribe((data: any) => {
+      this.response = data;
+    })
+    window.location.reload();
   }
 
   ngOnInit(): void {

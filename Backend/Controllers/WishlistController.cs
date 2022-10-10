@@ -20,9 +20,9 @@ namespace Backend.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult GetAll()
+        public IHttpActionResult GetAll(int id)
         {
-            var data = repository.GetWishlist();
+            var data = repository.GetByUser(id);
             return Ok(data);
         }
 
