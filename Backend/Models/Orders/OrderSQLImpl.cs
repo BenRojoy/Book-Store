@@ -34,7 +34,7 @@ namespace Backend.Models
         public List<Orders> GetOrder()
         {
             List<Orders> list = new List<Orders>();
-            comm.CommandText = "select * from orders";
+            comm.CommandText = "select * from orders o join book b on o.BookId = b.BookId order by date";
             comm.Connection = conn;
             conn.Open();
             SqlDataReader reader = comm.ExecuteReader();
@@ -47,6 +47,30 @@ namespace Backend.Models
                 int addressId = Convert.ToInt32(reader["AddressId"]);
                 string dateTime = reader["Date"].ToString();
                 list.Add(new Orders(id, userId, bookId, quantity, addressId, dateTime));
+            }
+            conn.Close();
+            return list;
+        }
+        public List<Orders> GetOrderByUser(int id)
+        {
+            List<Orders> list = new List<Orders>();
+            comm.CommandText = "select OrderId, UserId, b.BookId, Title, Image, Price, Quantity, AddressId, Date " +
+                "from orders o join book b on o.BookId = b.BookId where userid = " + id + " order by date";
+            comm.Connection = conn;
+            conn.Open();
+            SqlDataReader reader = comm.ExecuteReader();
+            while (reader.Read())
+            {
+                int orderId = Convert.ToInt32(reader["OrderId"]);
+                int userId = Convert.ToInt32(reader["UserId"]);
+                int bookId = Convert.ToInt32(reader["BookId"]);
+                string title = reader["Title"].ToString();
+                string image = reader["Image"].ToString();
+                double price = Convert.ToDouble(reader["Price"]);
+                int quantity = Convert.ToInt32(reader["Quantity"]);
+                int addressId = Convert.ToInt32(reader["AddressId"]);
+                string dateTime = reader["Date"].ToString();
+                list.Add(new Orders(orderId, userId, bookId, title, image, price, quantity, addressId, dateTime));
             }
             conn.Close();
             return list;

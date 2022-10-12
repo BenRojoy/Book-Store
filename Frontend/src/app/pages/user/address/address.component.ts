@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-address',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddressComponent implements OnInit {
 
-  constructor() { }
+  addresses: any[] = [];
+  id = localStorage.getItem("userid");
+
+  constructor(private dataService: DataService) {
+
+    this.dataService.getAddressByUser(this.id).subscribe((response: any) => {
+      this.addresses = response;
+    })
+   }
 
   ngOnInit(): void {
   }

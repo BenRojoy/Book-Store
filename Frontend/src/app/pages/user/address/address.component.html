@@ -7,6 +7,31 @@
         </div>
         <div class="col-lg-9 px-3">
             <h1 class="text-center mt-3">Addresses</h1>
+            <div class="card bg-light mt-3">
+                <div class="m-3" *ngFor="let address of addresses; index as i">
+                    <div style="float: left; width: 75%">
+                        <span class="align-middle">
+                            {{ i + 1 }}.&nbsp;No. {{ address.HouseNo }}, {{ address.Street }}, 
+                            {{ address.City }}, {{ address.State }} - {{ address.Pincode }}
+                        </span>
+                    </div>
+                    <div class="text-right w-20" style="float: right; width: 25%">
+                        <button class="btn btn-warning" type="button" data-toggle="collapse" 
+                        data-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">Edit</button>
+                        <button class="btn btn-danger ml-2">Delete</button>
+                    </div>
+                    <div class="collapse" id="collapse1">
+                    
+                    </div>
+                </div>
+                <button class="btn btn-warning btn-block" type="button" data-toggle="collapse" 
+                data-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">
+                    Add new address
+                  </button>
+                <div class="collapse" id="collapse1">
+                    
+                </div>
+            </div>
         </div>
     </div>
 </div>

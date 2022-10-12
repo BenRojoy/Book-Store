@@ -49,6 +49,26 @@ export class DataService {
     return this.http.delete(`http://localhost:59512/api/wishlist/${id}`);
   }
 
+  getAddressByUser(id: any) {
+    return this.http.get(`http://localhost:59512/api/address/${id}`);
+  }
+
+  placeOrder(order: any) {
+    return this.http.post(`http://localhost:59512/api/order`, order);
+  }
+
+  getOrders() {
+    return this.http.get(`http://localhost:59512/api/order`);
+  }
+
+  getOrderByUser(id: any) {
+    return this.http.get(`http://localhost:59512/api/order/${id}`);
+  }
+
+  deleteOrder(id: any) {
+    return this.http.delete(`http://localhost:59512/api/order/${id}`);
+  }
+
   adminUpdateUser(id: any, status: any)
   {
     return this.http.put(`http://localhost:59512/api/user?id=${id}&status=${status}`, null);

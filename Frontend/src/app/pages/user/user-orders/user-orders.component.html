@@ -1,12 +1,34 @@
 <app-navbar2></app-navbar2>
 
 <div class="container mt-5">
-    <div class="row">
+    <div id="row" class="row">
         <div class="col-lg-3 p-3">
             <app-user-options></app-user-options>
         </div>
         <div class="col-lg-9 px-3">
             <h1 class="text-center mt-3">Orders</h1>
+            <div class="row p-3">
+                <div class="col-lg-4 mb-3" *ngFor="let book of books">
+                    <div class="card h-100">
+                        <a routerLink="{{ '/book/' + book.BookId }}">
+                            <img src="{{ book.Image }}" alt="" class="card-img-top"></a>
+                        <div class="card-header">
+                            <h5 class="card-title">{{ book.Title }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text text-center">
+                                <span class="align-middle"> Quantity: {{ book.Quantity }} </span> <br>
+                                <span class="align-middle">Total: {{ book.Price * book.Quantity | currency : 'INR'}} </span> <br>
+                                <span class="align-middle"> Ordered on: {{ book.Date }} </span> <br>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a routerLink="{{ '/book/' + book.BookId }}" class="btn btn-warning btn-block">Details</a>
+                            <button (click)="removeBookOrder(book.OrderId)" class="btn btn-block btn-danger">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

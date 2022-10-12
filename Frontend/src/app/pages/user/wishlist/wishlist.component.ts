@@ -6,6 +6,7 @@ import { DataService } from '../../../services/data.service'
   templateUrl: './wishlist.component.html',
   styleUrls: ['./wishlist.component.css']
 })
+
 export class WishlistComponent implements OnInit {
 
   userId = localStorage.getItem('userid');
@@ -16,14 +17,15 @@ export class WishlistComponent implements OnInit {
     this.dataService.getWishlist(this.userId).subscribe((response: any) => {
     this.books = response;
     })
-}
-removeBook(id: any)
-{
-  this.dataService.deleteBookWishlist(id).subscribe(() =>
-    this.status = 'Delete successful'
-  );
-  window.location.reload();
-}
+  }
+
+  removeBook(id: any)
+  {
+    this.dataService.deleteBookWishlist(id).subscribe(() =>
+      this.status = 'Delete successful'
+    );
+    window.location.reload();
+  }
 
   ngOnInit(): void {
   }

@@ -26,6 +26,13 @@ namespace Backend.Controllers
             return Ok(data);
         }
 
+        [HttpGet]
+        public IHttpActionResult GetByUser(int id)
+        {
+            var data = repository.GetOrderByUser(id);
+            return Ok(data);
+        }
+
         [HttpPost]
         public IHttpActionResult Add(Orders order)
         {

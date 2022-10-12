@@ -18,17 +18,37 @@
                         <div class="card-body">
                             <p class="card-text text-center">
                                 <span class="align-middle"> Quantity: {{ book.Quantity }} </span> <br>
-                                <span class="align-middle">Total: {{ book.Price * book.Quantity | currency : 'INR'}} </span>
+                                <span class="align-middle">Total: {{ book.Price * book.Quantity | currency : 'INR'}}
+                                </span>
                             </p>
                         </div>
                         <div class="card-footer">
-                            <a routerLink="{{ '/book/' + book.BookId }}"
-                                class="btn btn-warning btn-block">Details</a>
+                            <a routerLink="{{ '/book/' + book.BookId }}" class="btn btn-warning btn-block">Details</a>
                             <button (click)="removeBook(book.CartId)" class="btn btn-block btn-danger">Remove</button>
                         </div>
                     </div>
                 </div>
+                <div class="w-100 mt-3">
+                    <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+                        <div class="d-grid">
+                            <select class="custom-select mb-3" (change)="changeAddress($event)"
+                                formControlName="address">
+                                <option value="">Choose address</option>
+                                <option *ngFor="let address of addresses, index as i" [ngValue]="address.AddressId">
+                                    {{ i + 1 }}.&nbsp;No. {{ address.HouseNo }}, {{ address.Street }}, {{ address.City
+                                    }}, {{ address.State }} - {{ address.Pincode }}
+                                </option>
+                            </select>
+                            <!-- error block -->
+                            <div class="invalid-feedback" *ngIf="isSubmitted && address?.invalid">
+                                <sup>*</sup>Please provide address
+                            </div>
+                            <button type="submit" class="btn btn-warning btn-block mt-3">
+                                Order now
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
