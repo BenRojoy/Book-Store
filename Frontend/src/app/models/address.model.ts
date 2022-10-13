@@ -6,7 +6,7 @@ export class Address {
         public Street?: string,
         public City?: string,
         public State?: string,
-        public Pincode?: number
-
+        public Pincode?: number,
+        public Country?: string
     ){}
 }

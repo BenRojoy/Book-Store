@@ -16,7 +16,7 @@ namespace Backend.Models
         public void AddAddress(Addresses address)
         {
             comm.CommandText = "insert into address values (" + address.UserId + ", '" + address.HouseNo + "', '" + address.Street +
-                "', '" + address.City + "', '" + address.State + "', " + address.Pincode + ")";
+                "', '" + address.City + "', '" + address.State + "', " + address.Pincode + ", '" + address.Country + "')";
             comm.Connection = conn;
             conn.Open();
             int row = comm.ExecuteNonQuery();
@@ -48,7 +48,8 @@ namespace Backend.Models
                 string city = reader["City"].ToString();
                 string state = reader["State"].ToString();
                 int pincode = Convert.ToInt32(reader["Pincode"]);
-                list.Add(new Addresses(addressId, userId, houseNo, street, city, state, pincode));
+                string country = reader["Country"].ToString();
+                list.Add(new Addresses(addressId, userId, houseNo, street, city, state, pincode, country));
             }
             conn.Close();
             return list;
@@ -69,7 +70,8 @@ namespace Backend.Models
                 string city = reader["City"].ToString();
                 string state = reader["State"].ToString();
                 int pincode = Convert.ToInt32(reader["Pincode"]);
-                list.Add(new Addresses(addressId, userId, houseNo, street, city, state, pincode));
+                string country = reader["Country"].ToString();
+                list.Add(new Addresses(addressId, userId, houseNo, street, city, state, pincode, country));
             }
             conn.Close();
             return list;
@@ -77,9 +79,9 @@ namespace Backend.Models
 
         public void UpdateAddress(Addresses address)
         {
-            comm.CommandText = "update address set userid = " + address.UserId + ", houseno = '" + address.HouseNo + 
+            comm.CommandText = "update address set houseno = '" + address.HouseNo + 
                 "', street = '" + address.Street + "', city = '" + address.City + "', state = '" + address.State + 
-                "', pincode = " + address.Pincode + " where addressid = " + address.AddressId;
+                "', pincode = " + address.Pincode + ", country = '" + address.Country + "' where addressid = " + address.AddressId;
             comm.Connection = conn;
             conn.Open();
             int row = comm.ExecuteNonQuery();

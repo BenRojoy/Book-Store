@@ -1,35 +1,166 @@
 <app-navbar2></app-navbar2>
 
 <div class="container mt-5">
-    <div class="row">
+    <div id="row" class="row">
         <div class="col-lg-3 p-3">
             <app-user-options></app-user-options>
         </div>
         <div class="col-lg-9 px-3">
             <h1 class="text-center mt-3">Addresses</h1>
             <div class="card bg-light mt-3">
-                <div class="m-3" *ngFor="let address of addresses; index as i">
+                <div class="row mx-3 mt-3" *ngFor="let address of addresses; index as i">
                     <div style="float: left; width: 75%">
                         <span class="align-middle">
                             {{ i + 1 }}.&nbsp;No. {{ address.HouseNo }}, {{ address.Street }}, 
-                            {{ address.City }}, {{ address.State }} - {{ address.Pincode }}
+                            {{ address.City }}, {{ address.State }} - {{ address.Pincode }}, {{ address.Country }}
                         </span>
                     </div>
                     <div class="text-right w-20" style="float: right; width: 25%">
-                        <button class="btn btn-warning" type="button" data-toggle="collapse" 
-                        data-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">Edit</button>
-                        <button class="btn btn-danger ml-2">Delete</button>
+                        <a class="btn btn-warning" data-toggle="collapse" href="#a{{i}}">Edit</a>
+                        <button (click)="deleteAddress(address.AddressId)" class="btn btn-danger ml-2">Delete</button>
                     </div>
-                    <div class="collapse" id="collapse1">
-                    
+                    <div class="row collapse w-100 mx-3 mt-3" id="a{{i}}">
+                        <form (ngSubmit)="onSubmit1()" #editForm="ngForm">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <label for="houseNo"><span class="align-middle">No.</span></label>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <input #houseNo="ngModel" type="text" name="houseNo" id="houseNo" class="form-control"
+                                        [(ngModel)]='addressModel.HouseNo' required
+                                        [class.is-invalid]="houseNo.invalid && houseNo.touched">
+                                        <div><small class="text-danger" [class.d-none]="houseNo.untouched || houseNo.valid">Number is required</small></div>    
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <label for="street"><span class="align-middle">Street</span></label>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <input #street="ngModel" type="text" name="street" id="street" class="form-control"
+                                        [(ngModel)]='addressModel.Street' required 
+                                        [class.is-invalid]="street.invalid && street.touched">
+                                        <div><small class="text-danger" [class.d-none]="street.untouched || street.valid">Street is required</small></div>                                
+                                    </div>
+                                    <div class="col-lg-1">                                        
+                                        <label for="city"><span class="align-middle">City</span></label>
+                                    </div>
+                                    <div class="col-lg-3">                                        
+                                        <input #city="ngModel" type="text" name="city" id="city" class="form-control"
+                                        [(ngModel)]='addressModel.City' required
+                                        [class.is-invalid]="city.invalid && city.touched">
+                                        <div><small class="text-danger" [class.d-none]="city.untouched || city.valid">City is required</small></div>                            
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-lg-1">                                        
+                                        <label for="state"><span class="align-middle">State</span></label>
+                                    </div>
+                                    <div class="col-lg-3">                                        
+                                        <input #state="ngModel" type="text" name="state" id="state" class="form-control"
+                                        [(ngModel)]='addressModel.State' required
+                                        [class.is-invalid]="state.invalid && state.touched">
+                                        <div><small class="text-danger" [class.d-none]="state.untouched || state.valid">State is required</small></div>
+                                    </div>
+                                    <div class="col-lg-1">                                        
+                                        <label for="pincode"><span class="align-middle">Pincode</span></label>
+                                    </div>
+                                    <div class="col-lg-3">                                        
+                                        <input #pincode="ngModel" type="number" name="pincode" id="pincode" class="form-control"
+                                        [(ngModel)]='addressModel.Pincode' required
+                                        [class.is-invalid]="pincode.invalid && pincode.touched">
+                                        <div><small class="text-danger" [class.d-none]="pincode.untouched || pincode.valid">Pincode is required</small></div>
+                                    </div>
+                                    <div class="col-lg-1">                                        
+                                        <label for="country"><span class="align-middle">Country</span></label>
+                                    </div>
+                                    <div class="col-lg-3">                                        
+                                        <input #country="ngModel" type="text" name="country" id="country" class="form-control"
+                                        [(ngModel)]='addressModel.Country' required
+                                        [class.is-invalid]="country.invalid && country.touched">
+                                        <div><small class="text-danger" [class.d-none]="country.untouched || country.valid">Country is required</small></div>                            
+                                    </div>
+                                </div>
+                                <br>
+                                <button (click)="setAddressId(address.AddressId)" type="submit" class="btn btn-warning btn-block"
+                                    [disabled]="editForm.invalid">Edit</button>
+                                <br>
+                            </div>
+                        </form>        
                     </div>
                 </div>
-                <button class="btn btn-warning btn-block" type="button" data-toggle="collapse" 
-                data-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">
-                    Add new address
-                  </button>
-                <div class="collapse" id="collapse1">
-                    
+                <div class="m-3">
+                    <button class="btn btn-warning btn-block" type="button" data-toggle="collapse" 
+                    data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                        Add new address
+                      </button>    
+                </div>
+                <div class="row collapse m-3" id="collapse2">
+                    <form (ngSubmit)="onSubmit2()" #editForm="ngForm">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-1">
+                                    <label for="houseNo"><span class="align-middle">No.</span></label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <input #houseNo="ngModel" type="number" name="houseNo" id="houseNo" class="form-control"
+                                    [(ngModel)]='addressModel.HouseNo' required
+                                    [class.is-invalid]="houseNo.invalid && houseNo.touched">
+                                    <div><small class="text-danger" [class.d-none]="houseNo.untouched || houseNo.valid">Number is required</small></div>    
+                                </div>
+                                <div class="col-lg-1">
+                                    <label for="street"><span class="align-middle">Street</span></label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <input #street="ngModel" type="text" name="street" id="street" class="form-control"
+                                    [(ngModel)]='addressModel.Street' required 
+                                    [class.is-invalid]="street.invalid && street.touched">
+                                    <div><small class="text-danger" [class.d-none]="street.untouched || street.valid">Street is required</small></div>                                
+                                </div>
+                                <div class="col-lg-1">                                        
+                                    <label for="city"><span class="align-middle">City</span></label>
+                                </div>
+                                <div class="col-lg-3">                                        
+                                    <input #city="ngModel" type="text" name="city" id="city" class="form-control"
+                                    [(ngModel)]='addressModel.City' required
+                                    [class.is-invalid]="city.invalid && city.touched">
+                                    <div><small class="text-danger" [class.d-none]="city.untouched || city.valid">City is required</small></div>                            
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-lg-1">                                        
+                                    <label for="state"><span class="align-middle">State</span></label>
+                                </div>
+                                <div class="col-lg-3">                                        
+                                    <input #state="ngModel" type="text" name="state" id="state" class="form-control"
+                                    [(ngModel)]='addressModel.State' required
+                                    [class.is-invalid]="state.invalid && state.touched">
+                                    <div><small class="text-danger" [class.d-none]="state.untouched || state.valid">State is required</small></div>
+                                </div>
+                                <div class="col-lg-1">                                        
+                                    <label for="pincode"><span class="align-middle">Pincode</span></label>
+                                </div>
+                                <div class="col-lg-3">                                        
+                                    <input #pincode="ngModel" type="number" name="pincode" id="pincode" class="form-control"
+                                    [(ngModel)]='addressModel.Pincode' required
+                                    [class.is-invalid]="pincode.invalid && pincode.touched">
+                                    <div><small class="text-danger" [class.d-none]="pincode.untouched || pincode.valid">Pincode is required</small></div>
+                                </div>
+                                <div class="col-lg-1">                                        
+                                    <label for="country"><span class="align-middle">Country</span></label>
+                                </div>
+                                <div class="col-lg-3">                                        
+                                    <input #country="ngModel" type="text" name="country" id="country" class="form-control"
+                                    [(ngModel)]='addressModel.Country' required
+                                    [class.is-invalid]="country.invalid && country.touched">
+                                    <div><small class="text-danger" [class.d-none]="country.untouched || country.valid">Country is required</small></div>                            
+                                </div>
+                            </div>
+                            <br>
+                            <button (click)="setUserId()" type="submit" class="btn btn-warning btn-block"
+                                [disabled]="editForm.invalid">Add</button>
+                            <br>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

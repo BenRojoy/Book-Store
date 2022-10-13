@@ -53,6 +53,18 @@ export class DataService {
     return this.http.get(`http://localhost:59512/api/address/${id}`);
   }
 
+  addAddress(address: any) {
+    return this.http.post(`http://localhost:59512/api/address`, address);
+  }
+
+  editAddress(address: any) {
+    return this.http.put(`http://localhost:59512/api/address`, address);
+  }
+
+  deleteAddress(id: any) {
+    return this.http.delete(`http://localhost:59512/api/address/${id}`);
+  }
+
   placeOrder(order: any) {
     return this.http.post(`http://localhost:59512/api/order`, order);
   }

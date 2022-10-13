@@ -14,9 +14,10 @@ namespace Backend.Models
         public string City { get; set; }
         public string State{ get; set; }
         public int Pincode{ get; set; }
+        public string Country { get; set; }
 
         public Addresses(int addressId, int userId, string houseNo, string street,
-            string city, string state, int pincode)
+            string city, string state, int pincode, string country)
         {
             AddressId = addressId;
             UserId = userId;
@@ -25,6 +26,7 @@ namespace Backend.Models
             City = city;
             State = state;
             Pincode = pincode;
+            Country = country;
         }
     }
 }
