@@ -7,28 +7,30 @@
         </div>
         <div class="col-lg-9 px-5">
             <h1 class="text-center">Users</h1>
-            <table class="table mt-4">
-                <thead>
-                    <th>User Id</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Mobile</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </thead>
-                <tbody *ngFor="let user of users">
-                    <td>{{ user.UserId }}</td>
-                    <td>{{ user.Name }}</td>
-                    <td>{{ user.Email }}</td>
-                    <td>{{ user.Mobile }}</td>
-                    <td *ngIf="user.AccountStatus">Active</td>
-                    <td *ngIf="!user.AccountStatus">Inactive</td>
-                    <td>
-                        <button *ngIf="!user.AccountStatus" (click)="activateUser(user.UserId)" class="btn btn-primary mr-2">Activate</button>
-                        <button *ngIf="user.AccountStatus" (click)="deActivateUser(user.UserId)" class="btn btn-danger">Deactivate</button>
-                    </td>
-                </tbody>
-            </table>
+            <div class="box mt-4 p-2">
+                <table class="table mb-0">
+                    <thead class="text-center">
+                        <th>User Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody class="text-center" *ngFor="let user of users">
+                        <td><span class="align-middle">{{ user.UserId }}</span></td>
+                        <td><span class="align-middle">{{ user.Name }}</span></td>
+                        <td><span class="align-middle">{{ user.Email }}</span></td>
+                        <td><span class="align-middle">{{ user.Mobile }}</span></td>
+                        <td *ngIf="user.AccountStatus"><span class="align-middle">Active</span></td>
+                        <td *ngIf="!user.AccountStatus"><span class="align-middle">Inactive</span></td>
+                        <td>
+                            <button *ngIf="!user.AccountStatus" (click)="activateUser(user.UserId)" class="btn btn-primary mr-2">Activate</button>
+                            <button *ngIf="user.AccountStatus" (click)="deActivateUser(user.UserId)" class="btn btn-danger">Deactivate</button>
+                        </td>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

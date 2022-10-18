@@ -6,7 +6,10 @@
     background-color: #e3c565;
 }
 
-table, th, td{
-    border: 2px black solid;
-    border-collapse: collapse;
+table{
+    background-color: white;    
+}
+
+.box{
+    background-color: #e3c565;
 }

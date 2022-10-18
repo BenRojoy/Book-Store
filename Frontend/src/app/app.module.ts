@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoryComponent } from './components/category/category.component';
 import { HomeComponent } from './pages/common/home/home.component';
-import { BookComponent } from './pages/common/book/book.component';
+import { BookComponent } from './pages/user/book/book.component';
 import { LoginComponent } from './pages/common/login/login.component';
 import { RegisterComponent } from './pages/common/register/register.component';
 import { AdminDashComponent } from './pages/admin/admin-dash/admin-dash.component';
@@ -25,7 +25,7 @@ import { AdminOrdersComponent } from './pages/admin/admin-orders/admin-orders.co
 import { UsersComponent } from './pages/admin/users/users.component';
 import { AdminBookComponent } from './pages/admin/admin-book/admin-book.component';
 import { AdminCategoryComponent } from './pages/admin/admin-category/admin-category.component';
-import { CategoryPageComponent } from './pages/common/category-page/category-page.component';
+import { CategoryPageComponent } from './pages/user/category-page/category-page.component';
 import { ErrorComponent } from './pages/common/error/error.component';
 import { AboutComponent } from './pages/common/about/about.component';
 import { ContactComponent } from './pages/common/contact/contact.component';
